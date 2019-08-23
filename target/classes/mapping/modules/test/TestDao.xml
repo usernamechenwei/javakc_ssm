@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhg.javakc.modules.test.dao.TestDao">
+
+	<select id="findList" resultType="com.zhg.javakc.modules.test.entity.TestEntity" >
+		SELECT TEST_ID as testId ,TEST_NAME as testName,TEST_AGE as testAge,TEST_SEX as testSex,TEST_DATE as testDate  FROM TEST where 1=1
+	</select>
+	
+	<insert id="insert" parameterType="com.zhg.javakc.modules.test.entity.TestEntity" >
+		insert into test(test_id,test_name,test_age,test_sex,test_date)
+		values (#{testId},#{testName},#{testAge},#{testSex},#{testDate})
+	</insert>
+
+	<select id="get" resultType="com.zhg.javakc.modules.test.entity.TestEntity" parameterType="String">
+		SELECT TEST_ID AS TESTID ,TEST_NAME AS TESTNAME,TEST_AGE AS TESTAGE,TEST_SEX AS TESTSEX,TEST_DATE AS TESTDATE
+		FROM TEST WHERE TEST_ID=#{ids}
+	</select>
+
+	<update id="update" parameterType="com.zhg.javakc.modules.test.entity.TestEntity">
+		UPDATE TEST	 set TEST_NAME=#{testName},TEST_AGE=#{testAge} ,TEST_SEX=#{testSex}, TEST_DATE=#{testDate}
+		WHERE TEST_ID=#{testId}
+	</update>
+
+    <delete id="delete" parameterType="int" >
+            delete test where  TEST_ID in
+            <foreach collection="array" open="(" separator="," close=")" item="item">
+                #{item}
+            </foreach>
+    </delete>
+
+</mapper>
