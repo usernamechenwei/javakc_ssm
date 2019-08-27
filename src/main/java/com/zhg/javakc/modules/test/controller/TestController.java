@@ -43,7 +43,8 @@ public class TestController {
     //新增数据
     @RequestMapping("create")
     public String create(TestEntity testEntity){
-               testEntity.setTestId(CommonUtil.uuid());
+
+        testEntity.setTestId(CommonUtil.uuid());
         testService.save(testEntity);
 
         return  "redirect:queryAll.do";

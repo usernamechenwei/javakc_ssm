@@ -13,8 +13,15 @@ public class CarTeam extends BaseEntity<CarTeam> {
   private String fax;//传真
   private int phone;//电话
   private String address;//地址
+  private String team_remark;//备注
 
+  public String getTeam_remark() {
+    return team_remark;
+  }
 
+  public void setTeam_remark(String team_remark) {
+    this.team_remark = team_remark;
+  }
 
   public String getTeam_id() {
     return team_id;

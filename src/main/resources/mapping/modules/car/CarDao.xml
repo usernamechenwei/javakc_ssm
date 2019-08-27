@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhg.javakc.modules.car.dao.CarDao">
+
+	<select id="findList" resultType="com.zhg.javakc.modules.car.entity.CarTeam" >
+       SELECT  TEAM_NAME as team_name,FAX as fax,PHONE as phone,ADDRESS as address,TEAM_ID as team_id
+        FROM CAR_TEAM WHERE 1=1
+	</select>
+
+	<insert id="insert" parameterType="com.zhg.javakc.modules.car.entity.CarTeam">
+		INSERT INTO CAR_TEAM (TEAM_ID, TEAM_NAME, COMPANY, FAX, PHONE, ADDRESS, TEAM_REMARK) VALUES
+		(#{team_id},#{team_name},#{company},#{fax},#{phone},#{address},#{team_remark})
+	</insert>
+
+	<select id="get" parameterType="String" resultType="com.zhg.javakc.modules.car.entity.CarTeam" >
+		SELECT TEAM_NAME as team_name,FAX as fax,PHONE as phone,ADDRESS as address,TEAM_ID as team_id FROM CAR_TEAM WHERE TEAM_ID=#{ids}
+	</select>
+
+	<update id="update" parameterType="com.zhg.javakc.modules.car.entity.CarTeam">
+      UPDATE CAR_TEAM SET TEAM_NAME=#{team_name},FAX=#{fax},PHONE=#{phone},ADDRESS=#{address},TEAM_REMARK=#{team_remark}
+      WHERE TEAM_ID=#{team_id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete car_team where  TEAM_ID in
+		<foreach collection="array" open="(" separator="," close=")" item="item">
+			#{item}
+		</foreach>
+	</delete>
+
+</mapper>

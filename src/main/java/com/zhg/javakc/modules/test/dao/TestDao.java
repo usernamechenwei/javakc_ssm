@@ -10,4 +10,6 @@ import com.zhg.javakc.modules.test.entity.TestEntity;
  */
 @MyBatisDao
 public interface TestDao extends BaseDao<TestEntity> {
+
+
 }

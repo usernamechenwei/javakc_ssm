@@ -45,7 +45,7 @@
 					        	<c:set var="vs"></c:set>
 					        	<c:forEach var="e" items="${page.list }" varStatus="v">
 						            <tr>
-						                <td><input type="checkbox" name="ids" value="${e.testId}"/></td>
+						                <td><input type="hidden" name="ids" value="${e.testId}"/></td>
 						                <td>${e.testName}</td>
 						                <td>${e.testAge}</td>
 						                <td>
