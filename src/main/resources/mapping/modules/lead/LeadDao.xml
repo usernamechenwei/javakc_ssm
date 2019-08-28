@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhg.javakc.modules.purchasing.dao.LeadDao">
+
+	<select id="findList" resultType="com.zhg.javakc.modules.purchasing.entity.LeadEntity" >
+		select lead_id as leadId ,lead_date as leadDate,lead_cont as leadCont,lead_use as leadUse,lead_type as leadType
+		,lead_state as leadState ,lead_phone as leadPhone,postcode ,address ,apply,oils_depot as oilsDepot,lead_name as userName
+		  from lead	where 1=1
+
+	</select>
+
+	<insert id="insert" parameterType="com.zhg.javakc.modules.purchasing.entity.LeadEntity">
+	insert into lead (LEAD_ID,LEAD_DATE,LEAD_CONT,LEAD_USE,LEAD_TYPE,LEAD_STATE,LEAD_PHONE,POSTCODE,ADDRESS,APPLY,INSIDEANDOUTSIDE,OILS_DEPOT,
+	LEAD_NAME)
+	values (#{leadId},#{leadDate},#{leadCont},#{leadUse},#{leadType},#{leadState},#{leadPhone},#{postcode},#{address}
+	,#{apply},#{insideAndOutside},#{oilsDepot},#{userName})
+	</insert>
+
+	<select id="count" resultType="String">
+		select count(1)as coutn from lead
+	</select>
+
+	<select id="get" resultType="com.zhg.javakc.modules.purchasing.entity.LeadEntity">
+		select lead_id as leadId ,lead_date as leadDate,lead_cont as leadCont,lead_use as leadUse,lead_type as leadType
+		,lead_state as leadState ,lead_phone as leadPhone,postcode ,address ,apply,oils_depot as oilsDepot,lead_name as userName
+		 from lead where LEAD_ID=#{sid}
+	</select>
+
+	<update id="update" parameterType="com.zhg.javakc.modules.purchasing.entity.LeadEntity" >
+		update lead set lead_date=#{leadDate} ,lead_cont=#{leadCont} ,lead_use=#{leadUse} ,lead_type=#{leadType}
+		,lead_state=#{leadState}  ,lead_phone=#{leadPhone} ,postcode=#{postcode} ,address=#{address} ,apply=#{apply},
+		oils_depot=#{oilsDepot} ,lead_name=#{userName}
+		 where LEAD_ID=#{leadId}
+	</update>
+
+	<delete id="delete" parameterType="int" >
+		delete  from lead where LEAD_ID in
+		<foreach collection="array" open="(" separator="," close=")" item="item">
+			#{item}
+		</foreach>
+
+	</delete>
+
+
+</mapper>
