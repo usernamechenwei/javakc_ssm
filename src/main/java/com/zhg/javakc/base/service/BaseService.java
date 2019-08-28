@@ -37,6 +37,8 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> {
 	public T get(T entity) {
 		return dao.get(entity);
 	}
+
+
 	
 	/**
 	 * 查询列表数据
@@ -56,7 +58,18 @@ public class BaseService<D extends BaseDao<T>, T extends BaseEntity<T>> {
 		entity.setNewRecord(true);
 		dao.insert(entity);
 	}
-	
+
+	/**
+	 * 查询条数
+	 * @return
+	 */
+	@Transactional(readOnly = false)
+	public String count(){
+	return 	dao.count();
+	}
+
+
+
 	/**
 	 * 保存数据（更新）
 	 * @param entity
