@@ -8,6 +8,10 @@ import java.util.List;
  * @version 0.1
  */
 public interface BaseDao<T> {
+
+
+
+	public String count();
 	
 	/**
 	 * 添加记录到系统
